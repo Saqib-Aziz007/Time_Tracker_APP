@@ -6,9 +6,9 @@ class CustomElevatedButton extends StatelessWidget {
     Key? key,
     this.child,
     this.colour,
-    this.radius = 2.0,
+    required this.radius,
     this.onPressed,
-    this.height = 50.0,
+    required this.height,
   }) : super(key: key);
 
   final Widget? child;
@@ -26,6 +26,7 @@ class CustomElevatedButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           onPrimary: Colors.black87,
           primary: colour,
+          onSurface: colour,
           minimumSize: const Size(88, 36),
           padding: const EdgeInsets.symmetric(horizontal: 16),
           shape: RoundedRectangleBorder(

@@ -1,25 +1,24 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:time_tracker_app/App/components/custom_elevated_button.dart';
 
-class SignInButton extends CustomElevatedButton {
-  SignInButton({
+class FormSubmitButton extends CustomElevatedButton {
+  FormSubmitButton({
     Key? key,
     required String text,
-    required Color color,
-    required Color textColor,
     required VoidCallback? onPressed,
   }) : super(
           key: key,
           child: Text(
             text,
-            style: TextStyle(
-              color: textColor,
-              fontSize: 15.0,
+            style: const TextStyle(
+              fontSize: 20.0,
+              color: Colors.white,
             ),
           ),
           height: 44.0,
           radius: 4.0,
-          colour: color,
+          colour: Colors.indigo,
           onPressed: onPressed,
         );
 }
