@@ -7,7 +7,7 @@ import 'package:time_tracker_app/App/components/show_exception_alert_dialog.dart
 import 'package:time_tracker_app/App/services/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-enum _EmailSignInFormType { signIn, register }
+import 'email_sign_in_model.dart';
 
 class EmailSignInForm extends StatefulWidget with EmailAndPasswordValidator {
   EmailSignInForm({Key? key}) : super(key: key);
@@ -25,7 +25,7 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
   final FocusNode _emailFocusNode = FocusNode();
   final FocusNode _passwordFocusNode = FocusNode();
 
-  late _EmailSignInFormType _formType = _EmailSignInFormType.signIn;
+  late EmailSignInFormType _formType = EmailSignInFormType.signIn;
   String get _email => _emailController.text;
   String get _password => _passwordController.text;
   bool _submitted = false;
@@ -48,7 +48,7 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
 
     try {
       final auth = Provider.of<AuthBase>(context, listen: false);
-      if (_formType == _EmailSignInFormType.signIn) {
+      if (_formType == EmailSignInFormType.signIn) {
         await auth.signInUserWithEmailAndPassword(_email, _password);
       } else {
         await auth.createUserWithEmailAndPassword(_email, _password);
@@ -71,9 +71,9 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
   void _toggleForm() {
     _submitted = false;
     setState(() {
-      _formType = _formType == _EmailSignInFormType.signIn
-          ? _EmailSignInFormType.register
-          : _EmailSignInFormType.signIn;
+      _formType = _formType == EmailSignInFormType.signIn
+          ? EmailSignInFormType.register
+          : EmailSignInFormType.signIn;
     });
     _emailController.clear();
     _passwordController.clear();
@@ -90,14 +90,14 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
     final bool submitEnabled = widget.emailValidator.isValid(_email) &&
         widget.passwordValidator.isValid(_password) &&
         !_isLoading;
-    final _primaryText = _formType == _EmailSignInFormType.signIn
+    final _primaryText = _formType == EmailSignInFormType.signIn
         ? 'Sign in'
         : 'Create an account';
-    final _secondaryText = _formType == _EmailSignInFormType.signIn
+    final _secondaryText = _formType == EmailSignInFormType.signIn
         ? 'Need an account? '
         : 'Have an account? ';
     final _thirdText =
-        _formType == _EmailSignInFormType.signIn ? 'Register' : 'Sign in';
+        _formType == EmailSignInFormType.signIn ? 'Register' : 'Sign in';
 
     return [
       _buildEmailTextField(),
