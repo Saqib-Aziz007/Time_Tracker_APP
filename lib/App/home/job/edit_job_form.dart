@@ -162,7 +162,8 @@ class _EditJobFormState extends State<EditJobForm> {
                     decoration: const InputDecoration(
                       labelText: 'Rate per hour',
                     ),
-                    onSaved: (value) => _ratePerHour = int.parse(value ?? '0'),
+                    onSaved: (value) => _ratePerHour =
+                        int.tryParse(value!.isNotEmpty ? value : '0'),
                     keyboardType: const TextInputType.numberWithOptions(
                       signed: false,
                       decimal: false,

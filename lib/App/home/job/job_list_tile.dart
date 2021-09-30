@@ -11,6 +11,7 @@ class JobListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      //tileColor: Colors.indigo[100],
       title: Text(job.name),
       trailing: const Icon(Icons.chevron_right),
       onTap: onTap,
